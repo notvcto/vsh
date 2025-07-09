@@ -145,7 +145,3 @@ See [`CONTRIBUTING.md`](docs/contributing.md) for details.
 ---
 
 > _“If you can talk, you can shell.” — VSH_
-
-```
-
-```

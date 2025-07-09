@@ -120,7 +120,7 @@ vsh/
 
 Want to help build the next great Linux shell? We welcome contributions of all kinds:
 
-- Bug reports & feature ideas → [Issues](https://github.com/yourname/vsh/issues)
+- Bug reports & feature ideas → [Issues](https://github.com/notvcto/vsh/issues)
 - Code contributions → Fork, commit, and open a PR
 - Plugin authors → Create plugins in `plugins/`
 - Theme designers → Submit `.toml` files to `themes/`
@@ -138,9 +138,9 @@ See [`CONTRIBUTING.md`](docs/contributing.md) for details.
 
 ## 🌐 Links
 
-- 📘 [Full Documentation](https://yourusername.github.io/vsh)
+- 📘 [Full Documentation](https://notvc.to/vsh/docs)
 - 📦 [Crates.io](https://crates.io/crates/vsh) _(coming soon)_
-- 🐦 [@vicdev](https://twitter.com/yourhandle) for updates
+- 🐦 [@notvcto](https://twitter.com/notvcto) for updates
 
 ---
 

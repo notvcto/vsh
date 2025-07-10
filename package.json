@@ -1,9 +1,9 @@
 {
   "name": "vsh-gh-pages",
+  "homepage": "https://notvcto.github.io/vsh/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://notvcto.github.io/vsh",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/vsh/", // For GitHub Pages deployment
+  base: "/vsh", // For GitHub Pages deployment
   server: {
     host: "::",
     port: 8080,

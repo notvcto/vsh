@@ -1,37 +1,35 @@
-name: Build and Deploy to gh-pages branch
+name: Deploy to GitHub Pages
 
 on:
-  # Run this workflow every time you push to the `main` branch
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js 🟩
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20 # Use a current LTS version of Node.js
-          cache: 'npm'
-
-      - name: Install Dependencies 📦
-        run: npm install
-
-      - name: Build Project 🏗️
-        # This runs the `build` script in your package.json
-        # and builds the app for production.
-        run: npm run build
-
-      - name: Deploy to gh-pages branch 🚀
-        # This action takes the built files and pushes them to your gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          # This is a secret token, automatically provided by GitHub
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # The folder that contains your built website files
-          publish_dir: ./dist
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build
+      run: npm run build
+      
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        publish_branch: gh-pages

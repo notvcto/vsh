@@ -1,65 +1,37 @@
-# Simple workflow for deploying a static Vite site to GitHub Pages
-name: Deploy Vite App to GitHub Pages
+name: Build and Deploy to gh-pages branch
 
 on:
-  # Runs on pushes targeting the `main` branch
+  # Run this workflow every time you push to the `main` branch
   push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    branches:
+      - main
 
 jobs:
-  # Build job
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js 🟩
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "npm"
+          node-version: 20 # Use a current LTS version of Node.js
+          cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install Dependencies 📦
         run: npm install
 
-      - name: Build the application
-        # This command builds your app. Make sure your vite.config.ts has base: '/vsh/'
+      - name: Build Project 🏗️
+        # This runs the `build` script in your package.json
+        # and builds the app for production.
         run: npm run build
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload production-ready build files
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages branch 🚀
+        # This action takes the built files and pushes them to your gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          # This should match the output directory of your build command (default for Vite is 'dist')
-          path: "./dist"
-
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    # The build job must complete successfully before this job runs
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          # This is a secret token, automatically provided by GitHub
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # The folder that contains your built website files
+          publish_dir: ./dist

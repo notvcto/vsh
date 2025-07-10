@@ -10,6 +10,7 @@ const Hero = () => {
     "copy file.txt to backup/",
     "search 'error' in logs/",
     "show disk space",
+    "compress folder projects to archive.tar.gz",
   ];
   const [currentCommand, setCurrentCommand] = useState(0);
 
@@ -17,7 +18,7 @@ const Hero = () => {
     const command = commands[currentCommand];
     let charIndex = 0;
     setTypedText("");
-    
+
     // Type the command character by character
     const typeInterval = setInterval(() => {
       if (charIndex <= command.length) {
@@ -25,7 +26,7 @@ const Hero = () => {
         charIndex++;
       } else {
         clearInterval(typeInterval);
-        
+
         // Wait 2 seconds, then erase
         setTimeout(() => {
           let eraseIndex = command.length;
@@ -49,7 +50,7 @@ const Hero = () => {
   // Cursor blinking effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
+      setShowCursor((prev) => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
@@ -100,8 +101,10 @@ const Hero = () => {
                   <span className="text-primary ml-1">$</span>
                   <span className="ml-2">
                     {typedText}
-                    <span 
-                      className={`inline-block w-2 h-5 bg-primary ml-0 align-middle ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}
+                    <span
+                      className={`inline-block w-2 h-5 bg-primary ml-0 align-middle ${
+                        showCursor ? "opacity-100" : "opacity-0"
+                      } transition-opacity duration-100`}
                     />
                   </span>
                 </div>

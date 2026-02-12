@@ -188,7 +188,9 @@ fn validate_args(args: &CommandArgs, intent: &Intent) -> Result<()> {
         }
         Intent::Remove => {
             if args.source.is_none() {
-                return Err(VshError::InvalidSyntax("Missing file to remove".to_string()));
+                return Err(VshError::InvalidSyntax(
+                    "Missing file to remove".to_string(),
+                ));
             }
         }
         Intent::List | Intent::ChangeDirectory => {

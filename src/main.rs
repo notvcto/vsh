@@ -69,8 +69,14 @@ fn execute_script(_script_path: &str, _debug: bool) -> Result<()> {
 
 fn start_repl(debug: bool) -> Result<()> {
     println!("{}", "VSH - Vic's Shell v0.1.0".bright_cyan().bold());
-    println!("{}", "A shell for everyone, built by everyone.".bright_black());
-    println!("{}\n", "Type 'help' for commands, 'exit' to quit.".bright_black());
+    println!(
+        "{}",
+        "A shell for everyone, built by everyone.".bright_black()
+    );
+    println!(
+        "{}\n",
+        "Type 'help' for commands, 'exit' to quit.".bright_black()
+    );
 
     let mut rl = DefaultEditor::new()?;
 
@@ -88,7 +94,7 @@ fn start_repl(debug: bool) -> Result<()> {
         // Get username and hostname
         let username = whoami::username();
         let hostname = whoami::fallible::hostname().unwrap_or_else(|_| "localhost".to_string());
-        
+
         // Get current directory for prompt
         let current_dir = std::env::current_dir()
             .ok()
@@ -104,13 +110,18 @@ fn start_repl(debug: bool) -> Result<()> {
                 Some(path.display().to_string())
             })
             .unwrap_or_else(|| "?".to_string());
-        
-        let prompt = format!("{} ", format!("{}@{}:{}$", username, hostname, current_dir).bright_green().bold());
-        
+
+        let prompt = format!(
+            "{} ",
+            format!("{}@{}:{}$", username, hostname, current_dir)
+                .bright_green()
+                .bold()
+        );
+
         match rl.readline(&prompt) {
             Ok(line) => {
                 let line = line.trim();
-                
+
                 if line.is_empty() {
                     continue;
                 }
@@ -183,11 +194,20 @@ fn start_repl(debug: bool) -> Result<()> {
 fn print_help() {
     println!("{}", "VSH Commands:".bright_cyan().bold());
     println!();
-    println!("  {}  Copy files", "copy <source> to <dest>".bright_yellow());
+    println!(
+        "  {}  Copy files",
+        "copy <source> to <dest>".bright_yellow()
+    );
     println!("  {}", "       (or: cp <source> <dest>)".bright_black());
-    println!("  {}", "       (or: copy source=<file> destination=<dest>)".bright_black());
+    println!(
+        "  {}",
+        "       (or: copy source=<file> destination=<dest>)".bright_black()
+    );
     println!();
-    println!("  {}  Move/rename files", "move <source> to <dest>".bright_yellow());
+    println!(
+        "  {}  Move/rename files",
+        "move <source> to <dest>".bright_yellow()
+    );
     println!("  {}", "       (or: mv <source> <dest>)".bright_black());
     println!();
     println!("  {}  Remove files", "remove <file>".bright_yellow());
@@ -198,7 +218,10 @@ fn print_help() {
     println!("  {}", "              (or: ls [path])".bright_black());
     println!();
     println!("  {}  Change directory", "cd <path>".bright_yellow());
-    println!("  {}", "                  (or: change-directory <path>)".bright_black());
+    println!(
+        "  {}",
+        "                  (or: change-directory <path>)".bright_black()
+    );
     println!("  {}", "                  (or: goto <path>)".bright_black());
     println!();
     println!("  {}  Print working directory", "pwd".bright_yellow());
@@ -206,7 +229,10 @@ fn print_help() {
     println!("  {}                Exit VSH", "exit".bright_yellow());
     println!("  {}                Show this help", "help".bright_yellow());
     println!();
-    println!("{}", "Tip: All commands support terse, verbose, and named syntax!".bright_black());
+    println!(
+        "{}",
+        "Tip: All commands support terse, verbose, and named syntax!".bright_black()
+    );
 }
 
 fn print_suggestion(input: &str) {

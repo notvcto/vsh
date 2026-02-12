@@ -40,16 +40,15 @@ fn execute_copy(cmd: &Command) -> Result<()> {
     // Check if source is a file or directory
     if source_path.is_file() {
         // Determine final destination path
-        let final_dest = if dest_path.is_dir() {
-            // Copy into directory with same filename
-            dest_path.join(
-                source_path
-                    .file_name()
-                    .ok_or_else(|| VshError::InvalidSyntax("Invalid source filename".to_string()))?,
-            )
-        } else {
-            dest_path.to_path_buf()
-        };
+        let final_dest =
+            if dest_path.is_dir() {
+                // Copy into directory with same filename
+                dest_path.join(source_path.file_name().ok_or_else(|| {
+                    VshError::InvalidSyntax("Invalid source filename".to_string())
+                })?)
+            } else {
+                dest_path.to_path_buf()
+            };
 
         // Perform the copy
         fs::copy(source_path, &final_dest).map_err(|e| {
@@ -168,12 +167,7 @@ fn execute_remove(cmd: &Command) -> Result<()> {
 
 /// Execute list command
 fn execute_list(cmd: &Command) -> Result<()> {
-    let path = cmd
-        .args
-        .path
-        .as_ref()
-        .map(|s| s.as_str())
-        .unwrap_or(".");
+    let path = cmd.args.path.as_ref().map(|s| s.as_str()).unwrap_or(".");
 
     let dir_path = Path::new(path);
 
@@ -214,12 +208,7 @@ fn execute_list(cmd: &Command) -> Result<()> {
 
 /// Execute change directory command
 fn execute_cd(cmd: &Command) -> Result<()> {
-    let path = cmd
-        .args
-        .path
-        .as_ref()
-        .map(|s| s.as_str())
-        .unwrap_or("~");
+    let path = cmd.args.path.as_ref().map(|s| s.as_str()).unwrap_or("~");
 
     // Expand ~ to home directory
     let expanded_path = if path.starts_with('~') {

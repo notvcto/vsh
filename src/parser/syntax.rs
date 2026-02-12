@@ -35,19 +35,19 @@ pub fn identify_intent(command: &str) -> Result<Intent> {
     match command.to_lowercase().as_str() {
         // Copy
         "cp" | "copy" => Ok(Intent::Copy),
-        
+
         // Move
         "mv" | "move" => Ok(Intent::Move),
-        
+
         // Remove
         "rm" | "remove" | "delete" => Ok(Intent::Remove),
-        
+
         // List
         "ls" | "list" | "dir" => Ok(Intent::List),
-        
+
         // Change directory
         "cd" | "change-directory" | "goto" => Ok(Intent::ChangeDirectory),
-        
+
         _ => Err(VshError::UnknownCommand(command.to_string())),
     }
 }

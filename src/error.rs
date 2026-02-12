@@ -33,7 +33,10 @@ impl VshError {
     pub fn with_suggestion(&self) -> String {
         match self {
             VshError::UnknownCommand(_cmd) => {
-                format!("{}\n\nSuggestion: Type 'help' to see available commands", self)
+                format!(
+                    "{}\n\nSuggestion: Type 'help' to see available commands",
+                    self
+                )
             }
             VshError::FileNotFound(_path) => {
                 format!(

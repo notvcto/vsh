@@ -77,8 +77,7 @@ fn test_list_command() {
     let dir = tempdir().unwrap();
 
     let mut cmd = Command::cargo_bin("vsh").unwrap();
-    cmd.arg("-c")
-        .arg(format!("list {}", dir.path().display()));
+    cmd.arg("-c").arg(format!("list {}", dir.path().display()));
 
     cmd.assert().success();
 }

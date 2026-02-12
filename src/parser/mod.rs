@@ -1,5 +1,5 @@
-mod tokenizer;
 mod syntax;
+mod tokenizer;
 mod translator;
 
 use crate::error::{Result, VshError};
@@ -18,9 +18,9 @@ pub enum Intent {
 /// Represents the detected syntax style
 #[derive(Debug, Clone, PartialEq)]
 pub enum SyntaxStyle {
-    Terse,    // cp, mv, rm
-    Verbose,  // copy, move, remove
-    Named,    // copy source=x dest=y
+    Terse,   // cp, mv, rm
+    Verbose, // copy, move, remove
+    Named,   // copy source=x dest=y
 }
 
 /// A parsed command ready for execution

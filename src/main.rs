@@ -98,16 +98,16 @@ fn start_repl(debug: bool) -> Result<()> {
         // Get current directory for prompt
         let current_dir = std::env::current_dir()
             .ok()
-            .and_then(|path| {
+            .map(|path| {
                 // Try to replace home directory with ~
                 if let Some(home) = dirs::home_dir() {
                     if path == home {
-                        return Some("~".to_string());
+                        return "~".to_string();
                     } else if let Ok(stripped) = path.strip_prefix(&home) {
-                        return Some(format!("~/{}", stripped.display()));
+                        return format!("~/{}", stripped.display());
                     }
                 }
-                Some(path.display().to_string())
+                path.display().to_string()
             })
             .unwrap_or_else(|| "?".to_string());
 

@@ -167,7 +167,7 @@ fn execute_remove(cmd: &Command) -> Result<()> {
 
 /// Execute list command
 fn execute_list(cmd: &Command) -> Result<()> {
-    let path = cmd.args.path.as_ref().map(|s| s.as_str()).unwrap_or(".");
+    let path = cmd.args.path.as_deref().unwrap_or(".");
 
     let dir_path = Path::new(path);
 
@@ -195,9 +195,9 @@ fn execute_list(cmd: &Command) -> Result<()> {
         let metadata = entry.metadata()?;
 
         if metadata.is_dir() {
-            println!("  {} {}/", "📁".to_string(), file_name_str.bright_blue());
+            println!("  {} {}/", "📁", file_name_str.bright_blue());
         } else {
-            println!("  {} {}", "📄".to_string(), file_name_str);
+            println!("  {} {}", "📄", file_name_str);
         }
     }
 
@@ -208,7 +208,7 @@ fn execute_list(cmd: &Command) -> Result<()> {
 
 /// Execute change directory command
 fn execute_cd(cmd: &Command) -> Result<()> {
-    let path = cmd.args.path.as_ref().map(|s| s.as_str()).unwrap_or("~");
+    let path = cmd.args.path.as_deref().unwrap_or("~");
 
     // Expand ~ to home directory
     let expanded_path = if path.starts_with('~') {

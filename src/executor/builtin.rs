@@ -195,9 +195,9 @@ fn execute_list(cmd: &Command) -> Result<()> {
         let metadata = entry.metadata()?;
 
         if metadata.is_dir() {
-            println!("  {} {}/", "📁", file_name_str.bright_blue());
+            println!("  📁 {}/", file_name_str.bright_blue());
         } else {
-            println!("  {} {}", "📄", file_name_str);
+            println!("  📄 {}", file_name_str);
         }
     }
 

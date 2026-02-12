@@ -46,18 +46,22 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
             artifact_name: vsh
             asset_name: vsh-linux-amd64
 
           - os: windows-latest
+            target: x86_64-pc-windows-msvc
             artifact_name: vsh.exe
             asset_name: vsh-windows-amd64.exe
 
-          - os: macos-13
+          - os: macos-latest
+            target: x86_64-apple-darwin
             artifact_name: vsh
             asset_name: vsh-darwin-amd64
 
-          - os: macos-14
+          - os: macos-latest
+            target: aarch64-apple-darwin
             artifact_name: vsh
             asset_name: vsh-darwin-arm64
 
@@ -66,17 +70,21 @@ jobs:
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
 
       - name: Rust Cache
         uses: swatinem/rust-cache@v2
 
       - name: Build Release
-        run: cargo build --release --verbose
+        shell: bash
+        run: |
+          cargo build --release --target ${{ matrix.target }} --verbose
 
       - name: Rename Binary
         shell: bash
         run: |
-          cp target/release/${{ matrix.artifact_name }} ${{ matrix.asset_name }}
+          cp target/${{ matrix.target }}/release/${{ matrix.artifact_name }} ${{ matrix.asset_name }}
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2

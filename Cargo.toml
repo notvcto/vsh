@@ -1,0 +1,51 @@
+[package]
+name = "vsh"
+version = "0.1.0"
+edition = "2021"
+authors = ["Victor Soto"]
+description = "A shell for everyone, built by everyone. Cognitive flexibility meets full shell power."
+repository = "https://github.com/notvcto/vsh"
+license = "MIT"
+keywords = ["shell", "cli", "terminal", "bash", "command-line"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+# Parsing
+nom = "7.1"
+
+# CLI & REPL
+clap = { version = "4.4", features = ["derive"] }
+rustyline = "13.0"
+colored = "2.1"
+
+# Data & Config
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# System interaction
+nix = { version = "0.27", features = ["fs", "process"] }
+dirs = "5.0"
+whoami = "1.4"
+
+# Utilities
+anyhow = "1.0"
+thiserror = "1.0"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+predicates = "3.0"
+tempfile = "3.8"
+
+[[bin]]
+name = "vsh"
+path = "src/main.rs"
+
+[lib]
+name = "vsh"
+path = "src/lib.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

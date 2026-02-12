@@ -20,7 +20,7 @@ VSH is a shell for everyone, built by everyone. No matter your experience level,
 
 ### 1. Join the Community
 - ⭐ Star the repo on GitHub
-- 💬 Join our [Discord server](https://discord.gg/vsh)
+- 💬 Join our Discord server (coming soon)
 - 📖 Read the [VSH Specification](VSH_SPECIFICATION.md)
 
 ### 2. Set Up Your Environment
@@ -442,10 +442,10 @@ Every contribution matters:
 
 ## 📞 Need Help?
 
-- 💬 **Discord `#help` channel** - Fastest response
-- 📧 **Email**: hello@vsh.dev
+- 💬 **Discord `#help` channel** (coming soon)
+- 📧 **Email**: (coming soon)
 - 💭 **GitHub Discussions** - For longer questions
-- 🐦 **Twitter**: @vsh_shell
+- 🐦 **Twitter**: (coming soon)
 
 **Don't be shy - we're here to help!**
 

@@ -38,12 +38,29 @@ jobs:
     name: Build Release Binary
     if: startsWith(github.ref, 'refs/tags/')
     needs: [check]
-    runs-on: ${{ matrix.os }}
     permissions:
       contents: write
+    runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            artifact_name: vsh
+            asset_name: vsh-linux-amd64
+
+          - os: windows-latest
+            artifact_name: vsh.exe
+            asset_name: vsh-windows-amd64.exe
+
+          - os: macos-13
+            artifact_name: vsh
+            asset_name: vsh-darwin-amd64
+
+          - os: macos-14
+            artifact_name: vsh
+            asset_name: vsh-darwin-arm64
+
     steps:
       - uses: actions/checkout@v4
 
@@ -59,15 +76,9 @@ jobs:
       - name: Rename Binary
         shell: bash
         run: |
-          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-            cp target/release/vsh.exe vsh-windows.exe
-          elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
-            cp target/release/vsh vsh-macos
-          else
-            cp target/release/vsh vsh-linux
-          fi
+          cp target/release/${{ matrix.artifact_name }} ${{ matrix.asset_name }}
 
-      - name: Upload to Release
+      - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
         with:
-          files: vsh-*
+          files: ${{ matrix.asset_name }}

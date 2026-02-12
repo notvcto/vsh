@@ -60,7 +60,7 @@ If you experience or witness unacceptable behavior:
 - Use the report function
 
 **GitHub Issues:**
-- Email: conduct@vsh.dev
+- Email: (Coming soon)
 - DM a core team member
 - Use GitHub's report abuse feature
 
@@ -210,13 +210,13 @@ This Code of Conduct may be updated by:
 
 ## Questions?
 
-- Email: conduct@vsh.dev
+- Email: (Coming soon)
 - Discord: DM any core team member
 - GitHub: Create a private security advisory
 
 ---
 
-**Thank you for helping make VSH a welcoming community for everyone!** 💙
+**Thank you for helping make VSH a welcoming community for everyone!** 💜
 
 ---
 

@@ -355,7 +355,7 @@ VSH is inspired by the incredible work of:
 - 💡 **Ideas:** GitHub Discussions
 - 🐛 **Bugs:** GitHub Issues
 - 💬 **Chat:** Discord (coming soon)
-- 📧 **Email:** hello@vsh.dev
+- 📧 **Email:** (coming soon)
 
 ---
 

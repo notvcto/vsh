@@ -333,7 +333,7 @@ See [LICENSE](LICENSE) for details.
 - **GitHub:** https://github.com/notvcto/vsh
 - **Discord:** (coming soon)
 - **Twitter:** (coming soon)
-- **Email:** hello@vsh.dev
+- **Email:** (coming soon)
 
 ---
 

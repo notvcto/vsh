@@ -239,7 +239,7 @@ This Code of Conduct may be updated by:
 - Be a jerk
 
 ### 📞 Report Issues:
-- Email: conduct@vsh.dev
+- Email: (COming soon)
 - Discord: DM a moderator
 - Stay anonymous if preferred
 
